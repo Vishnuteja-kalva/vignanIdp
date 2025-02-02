@@ -1,0 +1,96 @@
+.header {
+    height: 34vw;
+    margin: 30px auto;
+    background: 
+    linear-gradient(
+        rgba(5, 5, 5, 0.5), 
+        rgba(7, 7, 7, 0.5)
+      ),url('C:\Users\kalva\OneDrive\Desktop\Vignan MHP\frontend\src\assets\frontend_assets\header_back2.jpg') no-repeat center center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    position: relative;
+    background-size: 690px 300px;
+    border-radius: 10px;
+    border: 0.5px solid white;
+    box-shadow: 0 4px 10px rgba(111, 1, 1, 0.7);
+}
+
+.header-content {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5vw;
+    max-width: 60%;
+    bottom: 10%;
+    left: 6vw;
+    animation: fadeIn 3s ease-in-out;
+}
+
+.header-content h2 {
+    font-weight: 600;
+    color: #ffffff;
+    font-size: max(4.5vw, 22px);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.header-content p {
+    color: #f8f9fa;
+    font-size: 2vw;
+    line-height: 1.5;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+#Scroll{
+    background-color: #1f222b;
+    padding:5px 5px;
+    border-radius: 10px;
+    color:#e9ecef;
+    border:0.3px solid whitesmoke;
+}
+.header-content button {
+    border: none;
+    color: #495057;
+    font-weight: 600;
+    padding: 1vw 2.3vw;
+    background: linear-gradient(135deg, #ffffff, #e9ecef);
+    font-size: max(1vw, 13px);
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.header-content button:hover {
+    background: #1f222b;
+    color: #ffffff;
+    transform: scale(1.05);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+@media (max-width:750px){
+    .header-content h2{
+        font-size:4vw;
+    }
+    .header-content{
+        margin-bottom: 6px;
+    }
+    .header-content p {
+        font-size:2vw;
+    }
+    #Scroll{
+        padding:5px 5px;
+        border-radius: 10px;
+        color:#e9ecef;
+        border:0.3px solid whitesmoke;
+        font-size:2.5vw;
+    }
+}

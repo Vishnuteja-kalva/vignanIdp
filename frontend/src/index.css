@@ -1,0 +1,32 @@
+*
+{
+  padding:0;
+  margin :0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+body {
+  min-height: 100vh;
+    background-image: linear-gradient(
+        rgba(5, 5, 5, 0.7), 
+        rgba(7, 7, 7, 0.7)
+      ),
+      url("https://cdn.pixabay.com/photo/2024/06/22/08/07/ai-generated-8845695_640.jpg");
+}
+a{
+  text-decoration: none;
+  color:inherit;
+  
+}
+.app{
+  width:90%;
+  margin:auto;
+}
+@keyframes feBlend{
+  0%{
+    opacity:0;
+  }
+  100%{
+    opacity:1;
+  }
+}

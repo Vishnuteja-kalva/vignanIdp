@@ -1,0 +1,143 @@
+.navbar {
+    padding: 5px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+}
+
+.navbar .logo {
+    width: 70px;
+}
+
+.navbar-menu {
+    display: flex;
+    list-style: none;
+    gap: 10px;
+    font-size: 15px;
+    font-weight: 500;
+    margin-right: 12px;
+    padding: 0;
+}
+
+.navbar-menu a {
+    cursor: pointer;
+    padding: 8px 16px;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+}
+
+.navbar-menu li:hover {
+    transform: scaleX(1.2);
+}
+
+.navbar .active {
+    background-color:#252525;
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.navbar button {
+    background-color: #cacbcd;
+    color:black;
+    border: 1px solid black;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.navbar button:hover {
+    transform: scaleX(1.1);
+    background-color:#252525;
+    color: #cacbcd;
+}
+
+.navbar-search-icon {
+    position: relative;
+    cursor: pointer;
+}
+.nav-profile{
+    position:relative;
+    cursor:pointer;
+}
+.nav-profile-dropdown{
+    position:absolute;
+    right:0;
+    margin-right: 40px;
+    margin-top: 10px;
+    z-index: 1;
+    display:flex;
+    flex-direction: column;
+    gap:10px;
+    background-color: #dcdada;
+    padding:12px 25px;
+    border-radius: 10px;
+    border:2px solid #033393;
+    outline:2px solid #fbfafa;
+}
+.nav-profile-dropdown li{
+    list-style:none;
+    cursor:pointer;
+}
+.special{
+    display: flex;
+  flex-direction: row;
+  gap:10px;
+}
+
+.navbar-search-icon .dot {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background-color: #ef4444;
+    border-radius: 50%;
+    top: 0;
+    right: 0;
+}
+@media (max-width:1050px){
+
+    .navbar .logo{
+        width:70px;
+    }
+    .navbar-menu{
+        gap: 12px;
+        font-size: 15px;
+        margin-left: 17px;
+    }
+    .navbar-right{
+        gap:25px;
+    }
+    .navbar-right img{
+        width:24px;
+    }
+    .navbar-right button{
+        padding:8px 25px;
+    }
+}
+@media (max-width:750px){
+    .navbar .logo{
+        width:50px;
+    }
+    .navbar-menu{
+        display:none;
+    }
+    .navbar-right{
+        gap:15px;
+    }
+    .navbar-right img{
+        width:24px;
+    }
+    .navbar-right button{
+        padding:8px 10px;
+    }
+}
