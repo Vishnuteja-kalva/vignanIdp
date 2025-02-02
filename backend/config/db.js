@@ -2,7 +2,7 @@
 
   const connectDB = async () => {
     try {
-      console.log("MONGO_URL:", process.env.MONGO_URL);
+      console.log("MONGO_URL: mongodb+srv://vishnuteja:13705teja@cluster.au0tm.mongodb.net/food_data");
        await mongoose.connect('mongodb+srv://vishnuteja:13705teja@cluster.au0tm.mongodb.net/food_data').then(()=>console.log("DB Connected"));
       
     } catch (error) {
