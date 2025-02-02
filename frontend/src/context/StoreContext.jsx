@@ -6,7 +6,7 @@ export const StoreContext = createContext(null);
 const StoreContextProvider = (props) => {
     const [cartItems, setCartItems] = useState({});
     const [token, setToken] = useState(localStorage.getItem("token") || "");
-    const url = "http://localhost:4000";
+    const url = "https://vignan-mhp.onrender.com";
 
     useEffect(() => {
         if (localStorage.getItem("token")) {
