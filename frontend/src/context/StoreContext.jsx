@@ -7,7 +7,7 @@ const StoreContextProvider = (props) => {
     const [cartItems, setCartItems] = useState({});
     const [token, setToken] = useState(localStorage.getItem("token") || "");
     const [searchText, setSearchText] = useState("");
-    const url = "https://vignan-mhp.onrender.com";
+    const url = "https://vignanidp-backend.onrender.com";
 
     // Load cart from localStorage on init
     useEffect(() => {
