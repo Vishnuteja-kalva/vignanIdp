@@ -1,0 +1,154 @@
+.video-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  background-color: #fff8f0;
+  border-radius: 12px;
+  max-width: 900px;
+  margin: 7vh auto;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+}
+
+.video-container h1 {
+  font-size: 2rem;
+  color: #ff5722;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.video-search-bar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.video-search-bar input {
+  padding: 0.75rem;
+  width: 100%;
+  max-width: 300px;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.video-search-bar button {
+  padding: 0.75rem 1.25rem;
+  font-size: 1rem;
+  background-color: #ff5722;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.video-search-bar button:hover {
+  background-color: #e64a19;
+}
+
+.error-message {
+  color: red;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.video-player {
+  margin-top: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.video-player iframe {
+  width: 100%;
+  max-width: 560px;
+  height: 315px;
+  border: 3px solid black;
+  border-radius: 10px;
+  box-shadow: 5px 0px 20px rgba(255, 2, 2, 0.7);
+}
+
+.search-results {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.search-results h2 {
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.search-results ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.search-results li {
+  margin: 10px 0;
+}
+
+.search-results button {
+  padding: 10px 15px;
+  font-size: 1rem;
+  color: #fff;
+  background-color: #607d8b;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.search-results button:hover {
+  background-color: #455a64;
+}
+
+.info-icon {
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+  
+}
+
+.info-text {
+  margin: 10px 0;
+  padding: 1rem;
+  background-color: #f0f0f0;
+  border-radius: 8px;
+  text-align: left;
+  max-width: 600px;
+}
+
+@media (max-width: 768px) {
+  .video-search-bar {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .video-player iframe {
+    height: 250px;
+  }
+
+  .search-results button {
+    width: 100%;
+    max-width: 300px;
+  }
+}
+
+@media (max-width: 480px) {
+  .video-player iframe {
+    height: 200px;
+  }
+
+  .video-search-bar input {
+    width: 100%;
+  }
+
+  .search-results button {
+    width: 100%;
+  }
+}

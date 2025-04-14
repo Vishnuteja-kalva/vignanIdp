@@ -1,0 +1,136 @@
+/* Container Styling */
+.nutrition-fetcher {
+  padding: 2rem;
+  background: linear-gradient(hsla(0, 3%, 79%, 0.5), rgba(254, 254, 254, 0.5));
+  border-radius: 12px;
+  max-width: 95%;
+  margin: 7vh auto;
+  overflow-x: auto;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Heading */
+.nutrition-fetcher h3 {
+  text-align: center;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+/* Input Group Container */
+.input-group-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+/* Input Pair */
+.input-pair {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  flex-wrap: wrap;
+  width: 100%;
+  max-width: 600px;
+}
+
+/* Inputs */
+.input-pair input {
+  flex: 1;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  min-width: 120px;
+}
+
+/* Buttons */
+.add-btn, .input-group-container button[type="submit"] {
+  padding: 10px 14px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.add-btn {
+  background-color: #28a745;
+  color: white;
+}
+
+.add-btn:hover {
+  background-color: #218838;
+}
+
+.input-group-container button[type="submit"] {
+  background-color: #007bff;
+  color: white;
+}
+
+.input-group-container button[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+/* Nutrition Table */
+.nutrition-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+  overflow-x: auto;
+}
+
+.nutrition-table thead {
+  background-color: #007bff;
+  color: white;
+}
+
+.nutrition-table th,
+.nutrition-table td {
+  border: 1px solid #dee2e6;
+  padding: 8px;
+  text-align: center;
+}
+
+.nutrition-table tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+/* Responsive Styling */
+@media screen and (max-width: 768px) {
+  .input-pair {
+      flex-direction: column;
+      align-items: center;
+      width: 90%;
+  }
+  
+  .input-pair input {
+      width: 100%;
+  }
+  .add-btn,
+  .input-group-container button[type="submit"] {
+      width: 60%;
+  }
+
+  .nutrition-table {
+      font-size: 0.8rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .input-pair input {
+      font-size: 0.9rem;
+  }
+  .add-btn,
+  .input-group-container button[type="submit"] {
+      font-size: 0.9rem;
+      padding: 10px;
+  }
+  
+  .nutrition-table {
+      display: block;
+      overflow-x: scroll;
+      white-space: nowrap;
+  }
+}

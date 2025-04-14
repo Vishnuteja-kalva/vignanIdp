@@ -1,0 +1,100 @@
+/* OrderConfirmation.css */
+.order-confirmation {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+  padding: 20px;
+  background-color: #f9f9f9;
+}
+
+.confirmation-container {
+  background-color: white;
+  border-radius: 10px;
+  padding: 30px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  width: 100%;
+  text-align: center;
+}
+
+.success-icon {
+  margin-bottom: 20px;
+}
+
+h1 {
+  font-size: 28px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.thank-you {
+  font-size: 18px;
+  color: #555;
+  margin-bottom: 25px;
+}
+
+.order-details {
+  background-color: #f8f8f8;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 25px;
+  text-align: left;
+}
+
+.order-id {
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.order-id span {
+  color: #4CAF50;
+}
+
+.delivery-info {
+  margin-bottom: 25px;
+}
+
+.delivery-info h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.redirect-message {
+  color: #777;
+  margin-bottom: 25px;
+  font-style: italic;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.home-button, .track-button {
+  padding: 12px 25px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.home-button {
+  background-color: #f0f0f0;
+  color: #333;
+}
+
+.track-button {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.home-button:hover {
+  background-color: #e0e0e0;
+}
+
+.track-button:hover {
+  background-color: #3d9140;
+}

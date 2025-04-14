@@ -1,15 +1,10 @@
 .header {
     height: 34vw;
     margin: 30px auto;
-    background: 
-    linear-gradient(
-        rgba(5, 5, 5, 0.5), 
-        rgba(7, 7, 7, 0.5)
-      ),url('C:\Users\kalva\OneDrive\Desktop\Vignan MHP\frontend\src\assets\frontend_assets\header_back2.jpg') no-repeat center center;
     background-size: contain;
     background-repeat: no-repeat;
     position: relative;
-    background-size: 690px 300px;
+    background-size: 1099px 500px;
     border-radius: 10px;
     border: 0.5px solid white;
     box-shadow: 0 4px 10px rgba(111, 1, 1, 0.7);

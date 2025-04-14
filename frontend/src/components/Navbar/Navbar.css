@@ -61,7 +61,16 @@
     background-color:#252525;
     color: #cacbcd;
 }
-
+.robo{
+    width: 4vw;
+    height: 8vh;
+    cursor:pointer;
+    background-color: #f0f0f0;
+    border:1px solid #f0f0f0;
+    border-color: #252525;
+    padding:3px 3px;
+    border-radius: 50%;
+}
 .navbar-search-icon {
     position: relative;
     cursor: pointer;
@@ -85,6 +94,48 @@
     border:2px solid #033393;
     outline:2px solid #fbfafa;
 }
+/* Navbar.css */
+
+.search-toggle-icon {
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+    margin-right: 10px;
+    transition: transform 0.2s ease;
+  }
+  
+  .search-toggle-icon:hover {
+    transform: scale(1.1);
+  }
+  
+  .floating-search-input {
+    position: absolute;
+    top: 15px;
+    right: 80px;
+    width: 300px;
+    max-width: 80vw;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 30px;
+    outline: none;
+    font-size: 16px;
+    background-color: white;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 0.3s ease forwards;
+    z-index: 100;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-10px) scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+  
 .nav-profile-dropdown li{
     list-style:none;
     cursor:pointer;
@@ -136,6 +187,10 @@
     }
     .navbar-right img{
         width:24px;
+    }
+    .navbar-right .robo{
+        width:11vw;
+        height: 5vh;
     }
     .navbar-right button{
         padding:8px 10px;
