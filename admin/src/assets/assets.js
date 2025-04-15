@@ -14,4 +14,4 @@ export const assets ={
     parcel_icon
 }
 
-export const url = 'https://vignan-mhp.onrender.com'
+export const url = 'https://vignanidp-backend.onrender.com'
