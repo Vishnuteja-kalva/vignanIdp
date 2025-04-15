@@ -3,8 +3,9 @@ import './Navbar.css';
 import { assets } from '../../assets/frontend_assets/assets';
 import { Link } from 'react-router-dom';
 import { StoreContext } from '../../context/StoreContext';
-
+import { useNavigate } from 'react-router-dom';
 export const Navbar = ({ setShowLogin }) => {
+  const navigate = useNavigate();
   const [menu, setMenu] = useState('Home');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [searchVisible, setSearchVisible] = useState(false);
@@ -151,7 +152,7 @@ export const Navbar = ({ setShowLogin }) => {
           alt="AI" 
           onClick={() => {
             if (!token) setShowLogin(true);
-            else window.location.href = '/foodinfo';
+            else navigate('/foodinfo');
           }} 
         />
 
@@ -161,7 +162,7 @@ export const Navbar = ({ setShowLogin }) => {
             alt="Cart" 
             onClick={() => {
               if (!token) setShowLogin(true);
-              else window.location.href = '/cart';
+              else navigate('/cart');
             }} 
           />
           <div className={getTotalCartAmount() === 0 ? '' : 'dot'}></div>
