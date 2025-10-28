@@ -199,7 +199,7 @@ export const FoodChatbot = () => {
 
         try {
             const response = await axios.post(
-                'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=AIzaSyBZd2z4MrtmGWwW0c5lq60icZTPj5nxTC8',
+                'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=AIzaSyC15A6jsuKMmq0fU7lLsEXsl6AEnYOhPP4',
                 {
                     contents: [
                         {
