@@ -1,151 +1,16 @@
-// import React, { useState } from 'react';
-// import axios from 'axios';
-// import './FoodChatbot.css'; 
-// import { assets } from '../assets/frontend_assets/assets';
-// export const FoodChatbot = () => {
-//     const [messages, setMessages] = useState([
-//         { text: "Hello! How can I assist you today? You can ask about food, recipes, or nutrition.", user: "Foodbot 🤖" },
-//     ]);
-//     const [userInput, setUserInput] = useState("");
-
-//     const isValidQuery = (query) => {
-//         const keywords = [
-//             'food', 'recipe', 'recipes', 'nutrition', 'nutritional', 'ingredients', 'meal', 
-//             'cooking', 'diet', 'calories', 'healthy', 'cuisine', 'gourmet', 'dining', 
-//             'snacks', 'breakfast', 'lunch', 'dinner', 'beverages', 'drinks', 'dessert', 
-//             'appetizer', 'entree', 'soup', 'salad', 'vegan', 'vegetarian', 'gluten-free', 
-//             'organic', 'keto', 'paleo', 'protein', 'fiber', 'vitamins', 'minerals', 
-//             'carbs', 'sugar', 'fat', 'taste', 'flavors', 'spices', 'herbs', 'bakery', 
-//             'dairy', 'fast food', 'street food', 'gourmet'
-//           ];
-          
-//         return keywords.some(keyword => query.toLowerCase().includes(keyword));
-//     };
-
-//     const formatResponse = (text) => {
-//         const lines = text.split('\n').filter(line => line.trim() !== "");
-    
-//         return (
-//             <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-//                 {lines.map((line, idx) => {
-//                     if (line.trim().startsWith('*')) {
-//                         return (
-//                             <li key={idx} style={{ marginLeft: '20px' }}>
-//                                 {line.substring(1).trim()}
-//                             </li>
-//                         );
-//                     }
-//                     return (
-//                         <p key={idx} style={{ margin: 0, lineHeight: '1.5em' }}>
-//                             {line}
-//                         </p>
-//                     );
-//                 })}
-//             </div>
-//         );
-//     };    
-
-//     const handleUserInput = async (e) => {
-//         e.preventDefault();
-
-//         const userMessage = { text: userInput, user: "user" };
-//         setMessages((prev) => [...prev, userMessage]);
-
-//         if (!isValidQuery(userInput)) {
-//             const errorMessage = { text: "Sorry, I can only assist with questions related to food, recipes, or nutrition.", user: "Foodbot 🤖" };
-//             setMessages((prev) => [...prev, errorMessage]);
-//             setUserInput("");
-//             return;
-//         }
-
-//         try {
-//             const response = await axios.post(
-//                 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=AIzaSyBZd2z4MrtmGWwW0c5lq60icZTPj5nxTC8', // Ensure this key is valid
-//                 {
-//                     contents: [
-//                         {
-//                             parts: [
-//                                 {
-//                                     text: userInput,
-//                                 },
-//                             ],
-//                         },
-//                     ],
-//                 },
-//                 {
-//                     headers: {
-//                         'Content-Type': 'application/json',
-//                     },
-//                 }
-//             );
-
-//             console.log("Response from API:", response.data);
-
-//             const botResponseText = response.data.candidates?.[0]?.content?.parts?.[0]?.text || "Sorry, I couldn't understand that.";
-
-//             const botMessage = {
-//                 text: botResponseText,
-//                 user: "Foodbot 🤖",
-//             };
-//             setMessages((prev) => [...prev, botMessage]);
-//         } catch (error) {
-//             console.error("Error fetching from Gemini API:", error);
-//             if (error.response) {
-//                 console.error("Response error data:", error.response.data);
-//             }
-//             const errorMessage = { text: "Sorry, I couldn't process that. Please try again later.", user: "Foodbot 🤖" };
-//             setMessages((prev) => [...prev, errorMessage]);
-//         }
-
-//         setUserInput("");
-//     };
-
-//     return (
-//         <div className="food-chatbot-container">
-//   <div className="food-chatbot-header">
-//     <h1>Food Chatbot</h1>
-    
-//   </div>
-
-//   <form className="food-chatbot-form" onSubmit={handleUserInput}>
-//     <input
-//       className="food-chatbot-input"
-//       type="text"
-//       value={userInput}
-//       onChange={(e) => setUserInput(e.target.value)}
-//       placeholder="🔍 Queries on Food, Recipes and Nutritional values"
-//       required
-//     />
-//     <button className="food-chatbot-button" type="submit">Send</button>
-//   </form>
-
-//   <div className="food-chatbot-messages">
-//     {messages.map((msg, index) => (
-//       <div
-//         key={index}
-//         className={`food-chatbot-message ${msg.user === "user" ? "user" : ""}`}
-//       >
-//         <strong>{msg.user === "Foodbot 🤖" ? "Foodbot 🤖" : "You"}:</strong>
-//         <div className="food-chatbot-message-content">
-//           {msg.user === "Foodbot 🤖" ? formatResponse(msg.text) : msg.text}
-//         </div>
-//       </div>
-//     ))}
-//   </div>
-// </div>
-//     );
-// };
 import React, { useState } from 'react';
-import axios from 'axios';
-import './FoodChatbot.css'; 
-import { assets } from '../assets/frontend_assets/assets';
 
-export const FoodChatbot = () => {
+export function FoodChatbot() {
     const [messages, setMessages] = useState([
         { text: "Hello! How can I assist you today? You can ask about food, recipes, or nutrition.", user: "Foodbot 🤖" },
     ]);
     const [userInput, setUserInput] = useState("");
     const [showInfo, setShowInfo] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
+
+    // SECURITY NOTE: In production, API keys should be stored in environment variables
+    // and requests should go through your backend server, not directly from the client
+    const GROQ_API_KEY = "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";
 
     const isValidQuery = (query) => {
         const keywords = [
@@ -155,7 +20,7 @@ export const FoodChatbot = () => {
             'appetizer', 'entree', 'soup', 'salad', 'vegan', 'vegetarian', 'gluten-free', 
             'organic', 'keto', 'paleo', 'protein', 'fiber', 'vitamins', 'minerals', 
             'carbs', 'sugar', 'fat', 'taste', 'flavors', 'spices', 'herbs', 'bakery', 
-            'dairy', 'fast food', 'street food', 'gourmet'
+            'dairy', 'fast food', 'street food', 'gourmet', 'dish', 'eat', 'delicious'
         ];
         return keywords.some(keyword => query.toLowerCase().includes(keyword));
     };
@@ -165,10 +30,17 @@ export const FoodChatbot = () => {
         return (
             <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
                 {lines.map((line, idx) => {
-                    if (line.trim().startsWith('*')) {
+                    if (line.trim().match(/^[\*\-•]/)) {
                         return (
                             <li key={idx} style={{ marginLeft: '20px' }}>
-                                {line.substring(1).trim()}
+                                {line.replace(/^[\*\-•]\s*/, '').trim()}
+                            </li>
+                        );
+                    }
+                    if (line.trim().match(/^\d+\./)) {
+                        return (
+                            <li key={idx} style={{ marginLeft: '20px', listStyleType: 'decimal' }}>
+                                {line.replace(/^\d+\.\s*/, '').trim()}
                             </li>
                         );
                     }
@@ -182,10 +54,12 @@ export const FoodChatbot = () => {
         );
     };
 
-    const handleUserInput = async (e) => {
-        e.preventDefault();
+    const handleUserInput = async () => {
+        if (!userInput.trim()) return;
+
         const userMessage = { text: userInput, user: "user" };
         setMessages((prev) => [...prev, userMessage]);
+        setIsLoading(true);
 
         if (!isValidQuery(userInput)) {
             const errorMessage = {
@@ -194,58 +68,130 @@ export const FoodChatbot = () => {
             };
             setMessages((prev) => [...prev, errorMessage]);
             setUserInput("");
+            setIsLoading(false);
             return;
         }
 
         try {
-            const response = await axios.post(
-                'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=AIzaSyC15A6jsuKMmq0fU7lLsEXsl6AEnYOhPP4',
-                {
-                    contents: [
-                        {
-                            parts: [{ text: userInput }],
-                        },
-                    ],
+            const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${GROQ_API_KEY}`,
+                    'Content-Type': 'application/json',
                 },
-                {
-                    headers: { 'Content-Type': 'application/json' },
-                }
-            );
+                body: JSON.stringify({
+                    model: 'llama-3.3-70b-versatile',
+                    messages: [
+                        {
+                            role: 'system',
+                            content: 'You are a helpful food and nutrition assistant. Provide clear, accurate information about food, recipes, nutrition, and cooking. Keep responses concise and well-formatted.'
+                        },
+                        {
+                            role: 'user',
+                            content: userInput
+                        }
+                    ],
+                    temperature: 0.7,
+                    max_tokens: 1000,
+                }),
+            });
 
-            const botResponseText = response.data.candidates?.[0]?.content?.parts?.[0]?.text || "Sorry, I couldn't understand that.";
+            if (!response.ok) {
+                const errorData = await response.json().catch(() => null);
+                console.error('API Error Details:', errorData);
+                throw new Error(`API Error: ${response.status} - ${errorData?.error?.message || 'Unknown error'}`);
+            }
+
+            const data = await response.json();
+            const botResponseText = data.choices[0]?.message?.content || "Sorry, I couldn't understand that.";
             const botMessage = { text: botResponseText, user: "Foodbot 🤖" };
             setMessages((prev) => [...prev, botMessage]);
         } catch (error) {
-            console.error("Error fetching from Gemini API:", error);
+            console.error("Error fetching from Groq API:", error);
+            let errorText = "Sorry, I couldn't process that. ";
+            if (error.message.includes('401')) {
+                errorText += "The API key appears to be invalid or expired.";
+            } else if (error.message.includes('429')) {
+                errorText += "Rate limit exceeded. Please try again in a moment.";
+            } else if (error.message.includes('400')) {
+                errorText += "Invalid request. The model might not be available.";
+            } else {
+                errorText += "Please try again later.";
+            }
             const errorMessage = {
-                text: "Sorry, I couldn't process that. Please try again later.",
+                text: errorText,
                 user: "Foodbot 🤖"
             };
             setMessages((prev) => [...prev, errorMessage]);
         }
 
         setUserInput("");
+        setIsLoading(false);
+    };
+
+    const handleKeyPress = (e) => {
+        if (e.key === 'Enter' && !e.shiftKey) {
+            e.preventDefault();
+            handleUserInput();
+        }
     };
 
     return (
-        <div className="food-chatbot-container">
-            <div className="food-chatbot-header">
-                <img
-                className='info-icon'
-                style= {{ cursor: "pointer", width: "30px", height: "30px",borderRadius: "50%", marginRight: "10px"}}
-                src = {assets.info}
-                alt="Food Chatbot info"
-                onClick={() => setShowInfo(!showInfo)}
-                />
-                <h1>Food Chatbot</h1>
+        <div style={{
+            minHeight: '100vh',
+            // background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            color: 'white',
+            padding: '2rem 1rem'
+        }}>
+            {/* Header */}
+            <div style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '1rem',
+                marginBottom: '1rem'
+            }}>
+                <svg
+                    width="30"
+                    height="30"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    style={{ cursor: 'pointer' }}
+                    onClick={() => setShowInfo(!showInfo)}
+                >
+                    <circle cx="12" cy="12" r="10" />
+                    <line x1="12" y1="16" x2="12" y2="12" />
+                    <line x1="12" y1="8" x2="12.01" y2="8" />
+                </svg>
+                <h1 style={{ color: 'white', margin: 0 }}>Food Chatbot 🍕</h1>
             </div>
 
+            {/* Info Panel */}
             {showInfo && (
-                <div className="food-chatbot-info-panel" style = {{ backgroundColor: "grey", padding: "20px 30px", borderRadius: "8px",display: "flex", flexDirection: "column", gap: "10px"}}>
-                    <h3>About This Chatbot</h3>
-                    <p>This chatbot can help with questions related to food, recipes, and nutrition.</p>
-                    <h4>Include keywords like:</h4>
-                    <ul>
+                <div style={{
+                    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+                    backdropFilter: 'blur(10px)',
+                    padding: '20px 30px',
+                    borderRadius: '12px',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '10px',
+                    marginBottom: '1rem',
+                    width: '90%',
+                    maxWidth: '600px',
+                    border: '1px solid rgba(255, 255, 255, 0.2)'
+                }}>
+                    <h3 style={{ margin: 0 }}>About This Chatbot</h3>
+                    <p style={{ margin: 0 }}>This chatbot can help with questions related to food, recipes, and nutrition.</p>
+                    <h4 style={{ margin: '10px 0 5px 0' }}>Include keywords like:</h4>
+                    <ul style={{ margin: 0, paddingLeft: '20px' }}>
                         <li>food, recipe, ingredients</li>
                         <li>nutrition, calories, healthy</li>
                         <li>vegan, keto, paleo</li>
@@ -253,36 +199,147 @@ export const FoodChatbot = () => {
                         <li>dessert, beverage, salad, soup</li>
                         <li>vitamins, minerals, carbs, fat</li>
                     </ul>
-                    <p><em>Example:</em> <strong>"What are some high protein vegetarian meals?"</strong></p>
+                    <p style={{ margin: '5px 0 0 0' }}>
+                        <em>Example:</em> <strong>"What are some high protein vegetarian meals?"</strong>
+                    </p>
                 </div>
             )}
 
-            <form className="food-chatbot-form" onSubmit={handleUserInput}>
+            {/* Input Form */}
+            <div style={{
+                display: 'flex',
+                flexDirection: 'row',
+                gap: '20px',
+                flexWrap: 'wrap',
+                width: '100%',
+                justifyContent: 'center',
+                marginBottom: '1rem'
+            }}>
                 <input
-                    className="food-chatbot-input"
                     type="text"
                     value={userInput}
                     onChange={(e) => setUserInput(e.target.value)}
-                    placeholder="🔍 Queries on Food, Recipes and Nutritional values"
-                    required
+                    onKeyPress={handleKeyPress}
+                    placeholder="🔍 Ask about food, recipes, or nutrition..."
+                    disabled={isLoading}
+                    style={{
+                        width: '60vw',
+                        maxWidth: '600px',
+                        height: '50px',
+                        borderRadius: '15px',
+                        padding: '10px 15px',
+                        fontSize: '1rem',
+                        border: 'none',
+                        outline: 'none',
+                        boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)'
+                    }}
                 />
-                <button className="food-chatbot-button" type="submit">Send</button>
-            </form>
+                <button
+                    onClick={handleUserInput}
+                    disabled={isLoading || !userInput.trim()}
+                    style={{
+                        color: 'white',
+                        backgroundColor: '#4CAF50',
+                        width: '120px',
+                        height: '50px',
+                        borderRadius: '15px',
+                        fontSize: '1rem',
+                        fontWeight: 'bold',
+                        cursor: isLoading || !userInput.trim() ? 'not-allowed' : 'pointer',
+                        border: 'none',
+                        opacity: isLoading || !userInput.trim() ? 0.5 : 1,
+                        boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+                        transition: 'all 0.3s ease'
+                    }}
+                    onMouseEnter={(e) => {
+                        if (!isLoading && userInput.trim()) {
+                            e.target.style.transform = 'scale(1.05)';
+                        }
+                    }}
+                    onMouseLeave={(e) => {
+                        e.target.style.transform = 'scale(1)';
+                    }}
+                >
+                    Send
+                </button>
+            </div>
 
-            <div className="food-chatbot-messages">
+            {/* Messages Area */}
+            <div style={{
+                backgroundColor: 'rgba(255, 255, 255, 0.95)',
+                color: '#333',
+                border: '1px solid rgba(255, 255, 255, 0.3)',
+                padding: '20px',
+                maxHeight: '400px',
+                overflowY: 'auto',
+                borderRadius: '12px',
+                width: '90%',
+                maxWidth: '700px',
+                boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1)'
+            }}>
                 {messages.map((msg, index) => (
                     <div
                         key={index}
-                        className={`food-chatbot-message ${msg.user === "user" ? "user" : ""}`}
+                        style={{
+                            display: 'flex',
+                            flexDirection: 'column',
+                            gap: '8px',
+                            textAlign: msg.user === "user" ? 'right' : 'left',
+                            marginBottom: '20px'
+                        }}
                     >
-                        <strong>{msg.user === "Foodbot 🤖" ? "Foodbot 🤖" : "You"}:</strong>
-                        <div className="food-chatbot-message-content">
+                        <strong style={{ color: msg.user === "user" ? '#667eea' : '#4CAF50' }}>
+                            {msg.user === "Foodbot 🤖" ? "Foodbot 🤖" : "You"}:
+                        </strong>
+                        <div style={{
+                            marginLeft: msg.user === "user" ? '0' : '10px',
+                            backgroundColor: msg.user === "user" ? '#e3f2fd' : '#f1f8e9',
+                            padding: '10px 15px',
+                            borderRadius: '10px',
+                            display: 'inline-block',
+                            maxWidth: '100%'
+                        }}>
                             {msg.user === "Foodbot 🤖" ? formatResponse(msg.text) : msg.text}
                         </div>
                     </div>
                 ))}
+                {isLoading && (
+                    <div style={{ textAlign: 'left', marginTop: '10px' }}>
+                        <strong style={{ color: '#4CAF50' }}>Foodbot 🤖:</strong>
+                        <div style={{
+                            marginLeft: '10px',
+                            marginTop: '5px',
+                            backgroundColor: '#f1f8e9',
+                            padding: '10px 15px',
+                            borderRadius: '10px',
+                            display: 'inline-block'
+                        }}>
+                            <span>Typing</span>
+                            <span style={{ animation: 'blink 1.5s infinite' }}>.</span>
+                            <span style={{ animation: 'blink 1.5s infinite 0.2s' }}>.</span>
+                            <span style={{ animation: 'blink 1.5s infinite 0.4s' }}>.</span>
+                        </div>
+                    </div>
+                )}
             </div>
+
+            <style>{`
+                @keyframes blink {
+                    0%, 20% { opacity: 0; }
+                    50% { opacity: 1; }
+                    100% { opacity: 0; }
+                }
+
+                @media screen and (max-width: 768px) {
+                    input[type="text"] {
+                        width: 100% !important;
+                        margin-bottom: 10px;
+                    }
+                    button {
+                        width: 100% !important;
+                    }
+                }
+            `}</style>
         </div>
     );
-};
-
+}
